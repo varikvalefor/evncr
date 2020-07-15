@@ -1,0 +1,5 @@
+bool d[] =
+{
+	false,		/*	VALUE IFF FILENAMES ARE OUTPUT WHEN READ.	*/
+	false,		/*	VALUE IFF CRUSTY AUDIO SHOULD BE ACTIVATED.	*/
+};

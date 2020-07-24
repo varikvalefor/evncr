@@ -3,6 +3,7 @@
 	#include <Mmsystem.h>
 #endif
 
+#include <time.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>

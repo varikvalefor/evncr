@@ -1,7 +1,7 @@
 /*	fvox is a function which outputs the audio file whose filename is the argument of fvox.	*/
 
-/*	TODO: THIS PART OF THE PROGRAM MUST BE CROSS-PLATFORM.	*/
 /*	TODO: EVAN'S VOICE SAMPLES SHOULD BE ADDED TO "SAMPLES/".	*/
+/*	TODO: A CROSS-PLATFORM SOLUTION WHICH IS PREFERABLE TO USING A BUNCH OF IFDEFS SHOULD PROBABLY BE IMPLEMENTED.	*/
 
 /*
 	== System-Specific Approach ==
@@ -15,29 +15,20 @@ int fvox(int fvox_1)
 {
 	char fvox_2[64];
 	#if defined(__OpenBSD__) || defined(__FreeBSD__)
-	{
 		/*	EVANNOUNCER _should_ work properly on FreeBSD systems which have <CODE>aucat</CODE> installed.  However, proper support for FreeBSD should probably be ensured.	*/
-		sprintf(fvox_2, "aucat -i sound/%d.wav",fvox_1);
+		sprintf(fvox_2, "aucat -i /usr/local/share/sound/%d.wav",fvox_1);
 		if(d[0])
 			printf("FVOX: CURRENT FILENAME IS %s.\n", fvox_2);
 		return system(fvox_2);
-	}
 	#elif __linux__
-	{
 		printf("Get out... for the time being.  Linux should eventually be officially supported.\n");
 		return 1;
-	}
 	#elif defined(_WIN32) || defined(_WIN64)
-	{
 		/*	TODO:	THIS SOLUTION SHOULD BE TESTED!	*/
-		sprintf(fvox_2,"sound/%d.wav",fvox_1);
-		PlaySound(TEXT(fvox_2),	NULL,	SND_FILENAME);
-		return 0;
-	}
+		sprintf(fvox_2,"C:\\Program Files\\EVANNOUNCER\\sound\\%d.wav",fvox_1);
+		return 1 - int(PlaySound(TEXT(fvox_2),	NULL,	SND_FILENAME));
 	#else
-	{
-		printf("Go away.\n");
+		printf("Go away.  evncr shall most likely never support Chicken Shit OS.\n");
 		return 1;
-	}
 	#endif
 }

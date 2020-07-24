@@ -21,8 +21,12 @@ int fred(char fred_1[])
 
 		if(d[2])
 		{
+			struct timespec tim, tim2;
+			tim.tv_sec  = 0;
+			tim.tv_nsec = SLIZZEEP;
+
 			fred_4 *= fvox(128);		/*	"LATIN"	*/
-			usleep(vaaa[2]);
+			nanosleep(&tim, &tim2);
 
 			if(fred_3 < 48)
 				fred_4 += fvox(0);		/*	"OTHER"	*/
@@ -38,13 +42,13 @@ int fred(char fred_1[])
 				fred_4 += fvox(4);		/*	"MINUSCULE"	*/
 			else
 				fred_4 += fvox(0);
-			sleep(vaaa[2]);
+			nanosleep(&tim, &tim2);
 
 			if(fred_3 == 40   ||   fred_3 == 60   ||   fred_3 == 91   ||   fred_3 == 123)
 				fred_4 += fvox(5);		/*	"OPEN"	*/
 			else if(fred_3 == 41   ||   fred_3 == 62   ||   fred_3 == 93   ||   fred_3 == 125)
 				fred_4 += fvox(6);		/*	"CLOSE"	*/
-			usleep(vaaa[2]);	
+			nanosleep(&tim, &tim2);
 		}
 		if(fred_3 > 96   &&   fred_3 < 123)
 			fred_4 += fvox(fred_3-32);
@@ -54,7 +58,8 @@ int fred(char fred_1[])
 			fred_4 += fvox(fred_3-1);
 		else
 			fred_4 += fvox(fred_3);
-		sleep(vaaa[1]);
+		if(fred_1[fred_2+1] != '\0')
+			sleep(vaaa[1]);
 	}
 	return fred_4;
 }

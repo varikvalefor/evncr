@@ -1,19 +1,63 @@
-.TH evncr 1
-.SH NAME
-evncr - read stdin in the voice of EVAN DOORBELL <www.evan-doorbell.com>
-.SH DESCRIPTION
-EVANNOUNCER (\fBevncr\fR) is a computer program which was created by VARIK VALEFOR and EVAN DOORBELL with the intent of creating a program which is capable of very clearly reading the program's input to the program's user.
+.Dd $Mdocdate$
+.Dt evncr 1
+.Os
+
+.Sh NAME
+.Nm evncr
+.Nd read stdin in the voice of EVAN DOORBELL <www.evan-doorbell.com>
+
+.Sh SYNOPSIS
+.Nm evncr
+.Op Fl d Ar debugNum
+.Op Fl D Ar length
+.Op Fl l Ar directory
+.Op Fl x
+
+.Sh DESCRIPTION
+EVANNOUNCER (\fBevncr\fR) is a UNIX philosophy-compliant computer program which was created by VARIK VALEFOR and EVAN DOORBELL with the intent of creating a program which is capable of very clearly -- and enjoyably --  reading the program's input to the program's user.
 
 \fBevncr\fR can be used to read passwords, UIDs, or essentially any form of text data which is of a reasonable length.
-.SH EXAMPLE
-\fBecho asshat | evncr\fR should make the terminal speaker output "LATIN MINUSCULE ALFA, LATIN MINUSCULE SIERRA, LATIN MINUSCULE SIERRA, LATIN MINUSCULE HOTEL, LATIN MINUSCULE ALFA, LATIN MINUSCULE TANGO".
-.SH OPTIONS
-\fB-d([0-9]+)\fR - enables variable \fB\\1\fR.  The meanings of the various debugging variables are visible in the comments of \fBv__d.h\fR.
 
-\fB-x\fR disables reading the prefixes, e.g., "MAJUSCULE".
-.SH NOTES
--\fBevncr\fR currently lacks support for non-OpenBSD operating systems.  This problem shall eventually be solved if a want for a cross-platform \fBevncr\fR is voiced by \fBevncr\fR's potential users.
-.SH FILES
+The options are as follows:
+
+.Bl -tag -width Ds
+.It Fl d 
+enables variable \fIdebugNum\fR.  The meanings of the various debugging variables are visible in the comments of \fBv__d.h\fR.
+.It Fl D
+adds spacing between every \fIlength\fR characters.
+.It Fl l
+sets location of EVANNOUNCER files, e.g., 47.wav, to \fIdirectory\fR.
+.It Fl x
+disables reading prefixes, e.g., "MAJUSCULE".  This option is useful when case sensitivity is not needed.
+
+.Sh EXAMPLE
+\fBecho asshat | evncr\fR should make the terminal speaker output "LATIN MINUSCULE ALFA, LATIN MINUSCULE SIERRA, LATIN MINUSCULE SIERRA, LATIN MINUSCULE HOTEL, LATIN MINUSCULE ALFA, LATIN MINUSCULE TANGO" in the voice of EVAN DOORBELL.
+
+.Sh FILES
 The \fBsounds\fR directory contains the audio files which are played by \fBevncr\fR when reading sequences.  With the exception of \fBevncr\fR-specific pseudocharacters, e.g., "LATIN" and "MINUSCULE", for all printable ASCII characters, the \fBevncr\fR which contains this character is named \fB[ASCII integer representation of character].wav\fR.  See \fBfred.h\fR for more details.
-.SH CONTACT
-VARIK VALEFOR, the author of this source code, can be contacted at \fB varikvalefor@aol.com\fR.
+
+On UNIX-based systems, the "sounds" folder is located in \fB/usr/local/share/evncr/\fR, and on Windows systems, the "sounds" folder is located in \fB[host drive]:\\Program Files\\EVANNOUNCER\\\fR.
+
+.Sh DIAGNOSTICS
+\fBWhat is your major malfunction, numbnuts?\fR is output when the user has input a bad option.
+
+.Sh NOTES
+As a result of the technology which is currently used to play sound files, \fBevncr\fR only officially supports OpenBSD, although FreeBSD \fIshould\fR be capable of running \fBEVANNOUNCER\fR, and recent versions of Microsoft Windows \fImay\fR be capable of running \fBevncr\fR.
+
+The Makefile does \fInot\fR work on Microsoft Windows.  This problem shall be fixed when fixing this problem is convenient for VARIK.  In the meantime, for all users of Microsoft Windows, that a Windows user wishes to use EVANNOUNCER implies that this Windows user can manually follow the instructions which are contained within the Makefile.
+
+EVAN's voice samples have not yet been provided.
+
+Support for different inflections has not yet been implemented.
+
+The current cross-platform solution for
+.Nm
+does not yet support all modern operating systems.
+
+.Sh HISTORY
+The development of the first version of EVANNOUNCER began on 20200709 and lasted two (2) days; the source code of this version of the program was terribly messy, and the "code smell" sucked.  The Git commit which marked the creation of a new version read "[t]o hell with this.  A new version is in order."
+
+The current version actually sat in disrepair for a decent period of time before being updated such that EVANNOUNCER is actually capable of playing audio files; VARIK was uncertain of how such a feature should be implemented and, as such, may have made a few mistakes when implementing this functionality.  VARIK welcomes all useful criticism.
+
+.Sh CONTACT
+Hate mail regarding \fBevncr\fR can be sent to VARIK "NOT A COMPUTER PROGRAMMER!" VALEFOR <\fBvarikvalefor@aol.com\fR>, \fInot\fR to EVAN DOORBELL or Mr. REID; of these individuals, the former only supplied the audio recordings and is the basis of the mascot, and the latter is completely unaffiliated with the project.

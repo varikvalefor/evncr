@@ -8,30 +8,14 @@
 
 .Sh SYNOPSIS
 .Nm evncr
-.Op Fl d Ar debugNum
-.Op Fl D Ar length
-.Op Fl l Ar directory
-.Op Fl x
 
 .Sh DESCRIPTION
-EVANNOUNCER (\fBevncr\fR) is a UNIX philosophy-compliant computer program which was created by VARIK VALEFOR and EVAN DOORBELL with the intent of creating a program which is capable of very clearly -- and enjoyably --  reading the program's input to the program's user.
+EVANNOUNCER 
+.Pp .Nm
+is a UNIX philosophy-compliant computer program which was created by VARIK VALEFOR and EVAN DOORBELL with the intent of creating a program which is capable of very clearly -- and enjoyably --  reading the program's input to the program's user.
 
-\fBevncr\fR can be used to read passwords, UIDs, or essentially any form of text data which is of a reasonable length.
-
-The options are as follows:
-
-.Bl -tag -width Ds
-.It Fl d 
-enables variable \fIdebugNum\fR.  The meanings of the various debugging variables are visible in the comments of \fBv__d.h\fR.
-.It Fl D
-adds spacing between every
-.Va length
-characters.
-.It Fl l
-sets location of EVANNOUNCER files, e.g., 47.wav, to
-.Va directory .
-.It Fl x
-disables reading prefixes, e.g., "MAJUSCULE".  This option is useful when case sensitivity is not necessary.
+.Nm
+can be used to read passwords, UIDs, or essentially any form of text data which is of a reasonable length.
 
 .Sh EXAMPLE
 Running
@@ -71,18 +55,11 @@ folder is located in
 is output when the user has input a bad option.
 
 .Sh NOTES
-As a result of the technology which is currently used to play sound files,
-.Nm
-only officially supports OpenBSD, although FreeBSD
-.Em should
-be capable of running
-.Nm ,
-and recent versions of Microsoft Windows
-.Em may
-be capable of running
-.Nm .
-
-The Makefile does \fInot\fR work on Microsoft Windows.  This problem shall be fixed when fixing this problem is convenient for VARIK.  In the meantime, for all users of Microsoft Windows, that a Windows user wishes to use EVANNOUNCER implies that this Windows user can manually follow the instructions which are contained within the Makefile.
+As a result of using
+.Sy mplayer
+as the method of playing sounds, a functional
+.Sy mplayer
+installation is required.
 
 EVAN's voice samples have not yet been provided.
 
@@ -100,11 +77,14 @@ began on 20200709 and lasted two (2) days; the source code of this version of th
 sucked.  The Git commit which marked the creation of a new version read
 .Qq [t]o hell with this.  A new version is in order.
 
-The current version of
+The previous version of
 .Nm
-actually sat in disrepair for a decent period of time before being updated such that
+is written in C++ and is a bit unwieldy.
+
+This version of
 .Nm
-is actually capable of playing audio files; VARIK was uncertain of how such a feature should be implemented and, as such, may have made a few mistakes when implementing this functionality.  VARIK welcomes all useful criticism.
+is written in Haskell and was created because functionality could not be added to the previous version of
+.Nm .
 
 .Sh CONTACT
 Hate mail regarding

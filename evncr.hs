@@ -9,8 +9,9 @@ thingToInt theShift = [(prefixOne theShift), (prefixTwo theShift), (meatAndPotat
 
 prefixOne :: Char -> Int;
 prefixOne theShift
-             | ((fromEnum theShift)) < 58 && ((fromEnum theShift) >= 48) = 129
+             | (shifter < 58) && (shifter >= 48) = 129
              | otherwise = 128
+             where shifter = (fromEnum theShift)
 
 prefixTwo :: Char -> Int;
 prefixTwo theShift

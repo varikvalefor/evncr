@@ -38,10 +38,10 @@ outputSound :: [Int] -> [IO String];
 outputSound intRep = map (playFile) (map toFileName intRep);
 
 playFile :: [Char] -> IO String;
-playFile filename = readProcess "mplayer " [filename] "";
+playFile filename = readProcess "mplayer" [filename] "";
 
 main = do
   theInput <- getLine;
   print (map (thingToInt) theInput);
   let fuck = map (outputSound) (map (thingToInt) theInput);
-  printf "";
+  return ();

@@ -34,14 +34,10 @@ meatAndPotato theShift
 toFileName :: Int -> [Char];
 toFileName theShift = ("/usr/local/share/evncr/" ++ (show theShift) ++ ".wav");
 
-outputSound :: [Int] -> [IO String];
-outputSound intRep = map (playFile) (map toFileName intRep);
-
-playFile :: [Char] -> IO String;
-playFile filename = readProcess "mplayer" [filename] "";
+outputSound :: [Int] -> IO [String];
+outputSound x = mapM (\fn -> readProcess "mplayer" [fn] "") (map toFileName x);
 
 main = do
   theInput <- getLine;
   print (map (thingToInt) theInput);
-  let fuck = map (outputSound) (map (thingToInt) theInput);
-  return ();
+  mapM (outputSound) (map (thingToInt) theInput);

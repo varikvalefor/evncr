@@ -33,7 +33,7 @@ meatAndPotato theShift
                  where shifter = (fromEnum theShift)
 
 toFileName :: Int -> [Char];
-toFileName theShift = ("/usr/local/share/evncr/" ++ (show theShift) ++ ".wav");
+toFileName theShift = ("/usr/local/share/evncr/sound/" ++ (show theShift) ++ ".wav");
 
 outputSound :: [Int] -> IO [String];
 outputSound x = mapM (playFile) (map toFileName x);

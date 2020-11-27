@@ -37,9 +37,13 @@ and
 .Qq MINUSCULE ,
 for all printable ASCII characters, the file which contains this character is named
 .Sy [ASCII integer representation of character].wav .
-See
-.Sy fred.h
-for more details.
+However, majuscule and minuscule characters share source files, with the phrases
+.Qq MAJUSCULE
+and
+.Qq MINUSCULE
+being stored in individual files.  By using this approach, a few bytes can be saved.
+The specifics of the conversion process can be gleaned from the functions which are called by
+.Va thingToInt .
 
 On UNIX-based systems, the
 .Pa sounds

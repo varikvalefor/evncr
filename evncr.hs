@@ -1,5 +1,6 @@
 -- TODO: IMPLEMENT SLEEPING.
 
+import Config;
 import Control.Concurrent;
 import System.Process;
 import System.Environment;
@@ -40,7 +41,7 @@ outputSound x = mapM (playFile) (map toFileName x);
 
 playFile :: [Char] -> IO String;
 playFile x = do
-  threadDelay (125*10^3);
+  threadDelay delay_intraCharacter;
   readProcess "mplayer" [x] "";
 
 main = do

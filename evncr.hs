@@ -1,5 +1,4 @@
 -- TODO: IMPLEMENT PER-USER CONFIGURATION FILES.
--- TODO: IMPLEMENT SLEEPING.
 
 import Config;
 import Control.Concurrent;
@@ -38,7 +37,9 @@ toFileName :: Int -> [Char];
 toFileName theShift = ("/usr/local/share/evncr/sound/" ++ (show theShift) ++ ".wav");
 
 outputSound :: [Int] -> IO [String];
-outputSound x = mapM (playFile) (map toFileName x);
+outputSound x = do
+  threadDelay delay_interCharacter;
+  mapM (playFile) (map toFileName x);
 
 playFile :: [Char] -> IO String;
 playFile x = do

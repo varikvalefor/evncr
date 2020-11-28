@@ -10,6 +10,7 @@ install: evncr.hs
 	cp evncr.1 /usr/local/man/man1/$(FNAME).1
 	ls /usr/local/share/$(FNAME) || mkdir /usr/local/share/$(FNAME)
 	cp -r sound /usr/local/share/$(FNAME)/
+	rm *.hi *.o
 uninstall:
 	rm /usr/local/bin/$(FNAME)
 	rm -r /usr/local/share/$(FNAME)

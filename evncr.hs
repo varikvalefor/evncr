@@ -39,7 +39,7 @@ toFileName theShift = ("/usr/local/share/evncr/sound/" ++ (show theShift) ++ ".w
 outputSound :: [Int] -> IO [String];
 outputSound x = do
   threadDelay delay_interCharacter;
-  mapM (playFile) (map toFileName x);
+  mapM (playFile . toFileName) x;
 
 playFile :: [Char] -> IO String;
 playFile x = do
@@ -49,4 +49,4 @@ playFile x = do
 main = do
   theInput <- getLine;
   print (map (thingToInt) theInput);
-  mapM (outputSound) (map (thingToInt) theInput);
+  mapM (outputSound . thingToInt) theInput;

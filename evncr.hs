@@ -9,12 +9,16 @@ import Text.Printf;
 thingToInt :: Char -> [Int];
 thingToInt theShift = [(prefixOne theShift), (prefixTwo theShift), (meatAndPotato theShift)];
 
+--For all characters X, prefixTwo X is equal to the first
+--"prefix" of X, e.g., "LATIN" or "ARABIC".
 prefixOne :: Char -> Int;
 prefixOne theShift
              | (shifter < 58) && (shifter >= 48) = 129
              | otherwise = 128
              where shifter = (fromEnum theShift)
 
+--For all characters X, prefixTwo X is equal to the second
+--"prefix" of X, e.g., "MAJUSCULE" or "MINUSCULE".
 prefixTwo :: Char -> Int;
 prefixTwo theShift
              | shifter < 48 = 0
@@ -25,6 +29,8 @@ prefixTwo theShift
              | shifter < 123 = 4
              where shifter = (fromEnum theShift)
 
+-- For all characters X, meatAndPotato converts X into the
+-- "simplified" ASCII representation of X.
 meatAndPotato :: Char -> Int;
 meatAndPotato theShift
                  | (shifter > 96) && (shifter < 123) = (shifter - 32)

@@ -33,7 +33,7 @@ prefixTwo character
 -- "simplified" ASCII representation of X.
 meatAndPotato :: Char -> Int;
 meatAndPotato character
-  | (shifter > 96) && (shifter < 123) = (shifter - 32)
+  | shifter `elem` [95..122] = (shifter - 32)
   | shifter `elem` [62,93,125] = (shifter - 2)
   | shifter == 41 = 40
   | otherwise = shifter
@@ -50,5 +50,5 @@ playFile filename = threadDelay delay_intraChar >> readProcess "mplayer" [filena
 
 main = do
   theInput <- getLine;
-  print $ map (thingToInt) theInput;
+  print $ map thingToInt theInput;
   mapM (outputSound . thingToInt) theInput;

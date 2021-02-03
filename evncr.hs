@@ -48,7 +48,6 @@ outputSound x = threadDelay delay_interChar >> mapM (playFile . toFileName) x;
 playFile :: [Char] -> IO String;
 playFile filename = threadDelay delay_intraChar >> readProcess "mplayer" [filename] "";
 
-main = do
-  theInput <- getLine;
-  print $ map thingToInt theInput;
-  mapM (outputSound . thingToInt) theInput;
+main = getLine >>= \input ->
+  print $ map thingToInt input >>
+  mapM (outputSound . thingToInt) input;

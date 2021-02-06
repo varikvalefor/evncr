@@ -13,7 +13,7 @@ thingToInt theShift = [f theShift | f <- [prefixOne, prefixTwo, meatAndPotato]]
 --"prefix" of X, e.g., "LATIN" or "ARABIC".
 prefixOne :: Char -> Int;
 prefixOne theShift
-  | shifter < 58 && shifter >= 48 = 129
+  | shifter `elem` [59..48] = 129
   | otherwise = 128
   where shifter = fromEnum theShift
 
@@ -33,14 +33,14 @@ prefixTwo character
 -- "simplified" ASCII representation of X.
 meatAndPotato :: Char -> Int;
 meatAndPotato character
-  | shifter `elem` [95..122] = (shifter - 32)
-  | shifter `elem` [62,93,125] = (shifter - 2)
+  | shifter `elem` [95..122] = shifter - 32
+  | shifter `elem` [62,93,125] = shifter - 2
   | shifter == 41 = 40
   | otherwise = shifter
   where shifter = fromEnum character
 
 toFileName :: Int -> [Char];
-toFileName charInt = soundDir ++ (show charInt) ++ ".wav";
+toFileName charInt = soundDir ++ show charInt ++ ".wav";
 
 outputSound :: [Int] -> IO [String];
 outputSound x = threadDelay delay_interChar >> mapM (playFile . toFileName) x;
@@ -49,5 +49,4 @@ playFile :: [Char] -> IO String;
 playFile filename = threadDelay delay_intraChar >> readProcess "mplayer" [filename] "";
 
 main = getLine >>= \input ->
-  print $ map thingToInt input >>
   mapM (outputSound . thingToInt) input;

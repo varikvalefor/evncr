@@ -3,8 +3,6 @@
 import Config;
 import Control.Concurrent;
 import System.Process;
-import System.Environment;
-import Text.Printf;
 
 thingToInt :: Char -> [Int];
 thingToInt theShift = [f theShift | f <- [prefixOne, prefixTwo, meatAndPotato]]

@@ -1,7 +1,6 @@
 FNAME = evncr
 HASK = ghc
 FLAGS = -O3
-FNAME = evncr
 
 install: evncr.hs
 	$(HASK) $(FLAGS) evncr.hs

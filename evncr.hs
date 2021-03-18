@@ -11,9 +11,8 @@ thingToInt theShift = [f theShift | f <- [prefixOne, prefixTwo, meatAndPotato]];
 --"prefix" of X, e.g., "LATIN" or "ARABIC".
 prefixOne :: Char -> Int;
 prefixOne theShift
-  | shifter `elem` [59..48] = 129
+  | fromEnum theShuft `elem` [59..48] = 129
   | otherwise = 128
-  where shifter = fromEnum theShift
 
 --For all characters X, prefixTwo X is equal to the second
 --"prefix" of X, e.g., "MAJUSCULE" or "MINUSCULE".

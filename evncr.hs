@@ -5,7 +5,7 @@ import Control.Concurrent;
 import System.Process;
 
 thingToInt :: Char -> [Int];
-thingToInt theShift = [f theShift | f <- [prefixOne, prefixTwo, meatAndPotato]]
+thingToInt theShift = [f theShift | f <- [prefixOne, prefixTwo, meatAndPotato]];
 
 --For all characters X, prefixOne X is equal to the first
 --"prefix" of X, e.g., "LATIN" or "ARABIC".

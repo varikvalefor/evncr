@@ -7,7 +7,7 @@ import System.Process;
 -- | For all Char k, thingToInt k equals the sequence of words which
 -- EVNCR should read when reading k.
 thingToInt :: Char -> [Int];
-thingToInt theShift = [f theShift | f <- [prefixOne, prefixTwo, asciiNum]];
+thingToInt k = [f k | f <- [prefixOne, prefixTwo, asciiNum]];
 
 -- | For all characters X, prefixOne X is equal to the first "prefix" of
 -- X, e.g., "LATIN" or "ARABIC", represented as a value of type Int.

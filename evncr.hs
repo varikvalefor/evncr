@@ -43,11 +43,11 @@ asciiNum character
 toFileName :: Int -> [Char];
 toFileName charInt = soundDir ++ show charInt ++ ".wav";
 
-outputSound :: [Int] -> IO [String];
-outputSound x = threadDelay delay_interChar >> mapM (playFile . toFileName) x;
+readSequence :: [Int] -> IO [String];
+readSequence x = threadDelay delay_interChar >> mapM (playFile . toFileName) x;
 
 playFile :: [Char] -> IO String;
 playFile filename = threadDelay delay_intraChar >> readProcess "mplayer" [filename] "";
 
 main :: IO ();
-main = getLine >>= mapM_ (outputSound . thingToInt);
+main = getLine >>= mapM_ (readSequence . thingToInt);

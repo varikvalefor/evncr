@@ -13,7 +13,7 @@ thingToInt theShift = [f theShift | f <- [prefixOne, prefixTwo, asciiNum]];
 -- X, e.g., "LATIN" or "ARABIC", represented as a value of type Int.
 prefixOne :: Char -> Int;
 prefixOne theShift
-  | fromEnum theShuft `elem` [59..48] = 129
+  | fromEnum theShift `elem` [59..48] = 129
   | otherwise = 128
 
 -- | For all characters X, prefixTwo X is equal to the second
@@ -40,7 +40,7 @@ asciiNum character
 
 -- | For all Int g, toFileName g equals the filename of the recording of
 -- EVAN's reading of character g.
-toFileName :: Int -> [Char];
+toFileName :: Int -> FilePath;
 toFileName charInt = soundDir ++ show charInt ++ ".wav";
 
 -- | For all [Int] g which represents an ASCII character, readSequence g
@@ -49,7 +49,7 @@ readSequence :: [Int] -> IO [String];
 readSequence x = threadDelay delay_interChar >> mapM (playFile . toFileName) x;
 
 -- | For all [Char] k, playFile k plays the file whose path is k.
-playFile :: [Char] -> IO String;
+playFile :: FilePath -> IO String;
 playFile filename = threadDelay delay_intraChar >> readProcess "mplayer" [filename] "";
 
 main :: IO ();

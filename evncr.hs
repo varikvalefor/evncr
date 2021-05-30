@@ -13,7 +13,7 @@ thingToInt theShift = [f theShift | f <- [prefixOne, prefixTwo, asciiNum]];
 -- X, e.g., "LATIN" or "ARABIC", represented as a value of type Int.
 prefixOne :: Char -> Int;
 prefixOne theShift
-  | fromEnum theShift `elem` [59..48] = 129
+  | fromEnum theShift `elem` [49..58] = 129
   | otherwise = 128
 
 -- | For all characters X, prefixTwo X is equal to the second

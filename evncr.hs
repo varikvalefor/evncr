@@ -48,6 +48,7 @@ toFileName charInt = soundDir ++ show charInt ++ ".wav";
 readSequence :: [Int] -> IO [String];
 readSequence x = threadDelay delay_interChar >> mapM (playFile . toFileName) x;
 
+-- | For all [Char] k, playFile k plays the file whose path is k.
 playFile :: [Char] -> IO String;
 playFile filename = threadDelay delay_intraChar >> readProcess "mplayer" [filename] "";
 

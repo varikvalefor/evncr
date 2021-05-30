@@ -7,7 +7,7 @@ import System.Process;
 -- | For all Char k, thingToInt k equals the sequence of words which
 -- EVNCR should read when reading k.
 thingToInt :: Char -> [Int];
-thingToInt theShift = [f theShift | f <- [prefixOne, prefixTwo, meatAndPotato]];
+thingToInt theShift = [f theShift | f <- [prefixOne, prefixTwo, asciiNum]];
 
 -- | For all characters X, prefixOne X is equal to the first
 -- "prefix" of X, e.g., "LATIN" or "ARABIC".
@@ -28,10 +28,10 @@ prefixTwo character
   | shifter < 123 = 4
   where shifter = fromEnum character
 
--- | For all characters X, meatAndPotato converts X into the
+-- | For all characters X, asciiNum converts X into the
 -- "simplified" ASCII representation of X.
-meatAndPotato :: Char -> Int;
-meatAndPotato character
+asciiNum :: Char -> Int;
+asciiNum character
   | shifter `elem` [95..122] = shifter - 32
   | shifter `elem` [62,93,125] = shifter - 2
   | shifter == 41 = 40

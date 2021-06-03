@@ -5,7 +5,7 @@ import Control.Concurrent;
 import System.Process;
 
 -- | For all Char k, thingToInt k equals the sequence of words which
--- EVNCR should read when reading k.
+-- EVANNOUNCER should read when reading k.
 thingToInt :: Char -> [Int];
 thingToInt k = [f k | f <- [prefixOne, prefixTwo, asciiNum]];
 

@@ -28,8 +28,8 @@ prefixTwo character
   | shifter < 123 = 4
   where shifter = fromEnum character
 
--- | For all characters X, asciiNum converts X into the
--- "simplified" ASCII representation of X.
+-- | For all characters X, asciiNum X equals the "simplified" ASCII
+-- representation of X.
 asciiNum :: Char -> Int;
 asciiNum character
   | shifter `elem` [95..122] = shifter - 32

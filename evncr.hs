@@ -7,8 +7,8 @@ import System.Process;
 thingToInt :: Char -> [Int];
 thingToInt k = [f k | f <- [prefixOne, prefixTwo, asciiNum]];
 
--- | For all characters X, prefixOne X equals the first "prefix" of
--- X, e.g., "LATIN" or "ARABIC", represented as a value of type Int.
+-- | For all 'Char' @x@, @prefixOne x@ equals the first "prefix" of
+-- @x@, e.g., "LATIN" or "ARABIC", represented as a value of type 'Int'.
 prefixOne :: Char -> Int;
 prefixOne theShift
   | fromEnum theShift `elem` [49..58] = 129

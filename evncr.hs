@@ -95,8 +95,8 @@ readSingle k
     threadDelay delay_intraChar >>
     playFile (asciiNum k);
 
--- | @playFile n@ plays the file whose filename is @show n ++ ".wav"@, where
--- the root directory is @'soundDir'@.
+-- | @playFile n@ plays the file whose filename is @show n ++ ".wav"@,
+-- where the root directory is @'soundDir'@.
 playFile :: Int -> IO ();
 playFile n = void $ readProcess "mplayer" [path] []
   where

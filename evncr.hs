@@ -57,13 +57,14 @@ readSequence :: [Character] -> IO ();
 readSequence = mapM_ readSingle . intersperse defaultCharacter;
 
 readSingle :: Character -> IO ();
-readSingle defaultCharacter = threadDelay delay_interChar;
-readSingle k =
-  playFile (prefix1 k) >>
-  threadDelay delay_intraChar >>
-  playFile (prefix2 k) >>
-  threadDelay delay_intraChar >>
-  playFile (asciiNum k);
+readSingle k
+  | k == defaultCharacter = threadDelay delay_interChar
+  | otherwise =
+    playFile (prefix1 k) >>
+    threadDelay delay_intraChar >>
+    playFile (prefix2 k) >>
+    threadDelay delay_intraChar >>
+    playFile (asciiNum k);
 
 playFile :: Int -> IO ();
 playFile n = void $ readProcess "mplayer" [soundDir ++ show n ++ ".wav"] [];

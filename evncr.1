@@ -12,11 +12,13 @@ EVANNOUNCER, otherwise known as
 is a program which reads STDIN clearly and enjoyably.
 .Pp
 .Nm
-adheres to the UNIX philosophy and is created by VARIK VALEFOR, with EVAN DOORBELL supplying the voice of
+adheres to the UNIX philosophy and is created by VARIK VALEFOR, with
+EVAN DOORBELL supplying the voice of
 .Nm .
 .Pp
 .Nm
-can read passwords, UIDs, or essentially any form of text data which is of a reasonable length.
+can read passwords, UIDs, or essentially any form of text data which is
+of a reasonable length.
 .Pp
 .Sh EXAMPLE
 Running
@@ -31,20 +33,25 @@ The
 .Pa sounds
 directory contains the audio files which are played by
 .Nm
-when reading sequences.  With the exception of pseudocharacters which are unique to
+when reading sequences.  With the exception of pseudocharacters which
+are unique to
 .Nm ,
 e.g.,
 .Dq LATIN
 and
 .Dq MINUSCULE ,
-for all printable ASCII characters, the file which contains a character is named
+for all printable ASCII characters, the file which contains a character
+is named
 .Sy [ASCII integer representation of character].wav .
-However, majuscule and minuscule characters share source files, with the phrases
+However, majuscule and minuscule characters share source files, with the
+phrases
 .Dq MAJUSCULE
 and
 .Dq MINUSCULE
-being stored in individual files.  By using this approach, a few bytes can be saved.
-The specifics of the conversion process can be gleaned from the functions which are called by
+being stored in individual files.  By using this approach, a few bytes
+can be saved.
+The specifics of the conversion process can be gleaned from the
+functions which are called by
 .Va parseCharacter .
 .Pp
 On UNIX-based systems, the
@@ -81,12 +88,14 @@ was terribly messy and unmaintainable.
 .Pp
 The previous version of
 .Nm
-is written in C++ and is a bit unwieldy.  The source code of this implementation is available at
+is written in C++ and is a bit unwieldy.  The source code of this
+implementation is available at
 .Lk http://github.com/varikvalefor/evncr "the EVANNOUNCER GitHub repository" .
 .Pp
 This version of
 .Nm
-is written in Haskell and was created because functionality could not be added to the previous version of
+is written in Haskell and was created because functionality could not be
+added to the previous version of
 .Nm .
 .Sh THANKS
 EVAN is a cool dude and supplied the audio files of
@@ -111,4 +120,5 @@ can be sent to
 .An VALEFOR
 .Aq varikvalefor@aol.com ,
 .Em not
-to EVAN DOORBELL, who is responsible only for being the mascot and voice of EVANNOUNCER.
+to EVAN DOORBELL, who is responsible only for being the mascot and voice
+of EVANNOUNCER.

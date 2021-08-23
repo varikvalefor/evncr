@@ -7,8 +7,10 @@ import Control.Concurrent;
 -- | For all 'Character' @k@, @k@ is a representation of an ASCII
 -- character.
 data Character = Character {
-  -- | @prefix1 k@ is the first prefix of @k@, e.g., "LATIN" or
-  -- "ARABIC".
+  -- | @prefix1 k@ is the first prefix of @k@.
+  --
+  -- If @k@ represents a number, then @prefix1 k@ equals @129@.
+  -- @prefix1 k@ otherwise equals @128@.
   prefix1 :: Int,
   -- | @prefix2 k@ is the second prefix of @k@, e.g., "MAJUSCULE" or
   -- "MINUSCULE".

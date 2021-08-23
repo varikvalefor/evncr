@@ -12,7 +12,8 @@ copyright:     (C) Varik Valefor 2021.
 
 executable evncr
   main-is: evncr.hs
-  other-modules: Config
+  other-modules:
+    Config
   build-depends:
     base ^>=4.14.1.0,
     process

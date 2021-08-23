@@ -1,9 +1,8 @@
 -- | This module contains the configuration variables of EVANNOUNCER.
 module Config where
 
--- | @delay_intraChar@ denotes the delay between readings of
+-- | @delay_intraChar@ denotes the microsecond-based delay between readings of
 -- intra-character phrases, e.g., "ARABIC" and "MAJUSCULE".
--- Times are given in microseconds.
 delay_intraChar :: Int;
 delay_intraChar = 125 * 10^3;
 

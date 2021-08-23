@@ -42,6 +42,7 @@ data Character = Character {
   asciiNum :: Int
 } deriving (Eq, Read, Show);
 
+-- | @parseCharacter k@ is a 'Character' which represents @k@.
 parseCharacter :: Char -> Character;
 parseCharacter k = Character {
   prefix1 = prefix1',

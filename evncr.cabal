@@ -4,7 +4,7 @@ version:            0.1.0.0
 synopsis:           Read STDIN in the voice of EVAN DOORBELL.
 description:        evncr reads the standard input in the voice of EVAN
                     DOORBELL.
-bug-reports:        no
+bug-reports:        http://github.com/varikvalefor/evncr/issues
 license:            BSD-3-Clause
 author:             Varik Valefor
 maintainer:         varikvalefor@aol.com

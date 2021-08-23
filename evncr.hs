@@ -42,8 +42,8 @@ asciiNum character
 toFileName :: Int -> FilePath;
 toFileName charInt = soundDir ++ show charInt ++ ".wav";
 
--- | For all [Int] g which represents an ASCII character, readSequence g
--- reads aloud the character which g represents via MPLAYER, returning
+-- | For all ['Int'] @g@ which represents an ASCII character, @readSequence g@
+-- reads aloud the character which @g@ represents via MPLAYER, returning
 -- MPLAYER's command-line output.
 readSequence :: [Int] -> IO [String];
 readSequence x = threadDelay delay_interChar >> mapM (playFile . toFileName) x;

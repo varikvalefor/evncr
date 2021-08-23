@@ -1,57 +1,72 @@
 import Config;
-import Control.Concurrent;
+import Data.List;
+import Control.Monad;
 import System.Process;
+import Control.Concurrent;
 
--- | For all 'Char' @k@, @thingToInt k@ equals the sequence of words
--- which EVANNOUNCER should read when reading @k@.
-thingToInt :: Char -> [Int];
-thingToInt k = [f k | f <- [prefixOne, prefixTwo, asciiNum]];
+-- | For all 'Character' @k@, @k@ is a representation of an ASCII
+-- character.
+data Character = Character {
+  -- | @prefix1 k@ is the first prefix of @k@, e.g., "LATIN" or
+  -- "ARABIC".
+  prefix1 :: Int,
+  -- | @prefix2 k@ is the second prefix of @k@, e.g., "MAJUSCULE" or
+  -- "MINUSCULE".
+  prefix2 :: Int,
+  -- | @asciiNum k@ is the "meat and potatoes" of @k@, e.g., 
+  asciiNum :: Int
+} deriving (Eq, Read, Show);
 
--- | For all 'Char' @x@, @prefixOne x@ equals the first "prefix" of
--- @x@, e.g., "LATIN" or "ARABIC", represented as a value of type 'Int'.
-prefixOne :: Char -> Int;
-prefixOne theShift
-  | fromEnum theShift `elem` [49..58] = 129
-  | otherwise = 128
+parseCharacter :: Char -> Character;
+parseCharacter k = Character {
+  prefix1 = prefix1',
+  prefix2 = prefix2',
+  asciiNum = asciiNum'
+  }
+  where
+  asciiNum' :: Int
+  asciiNum'
+    | k' `elem` [95..122] = k' - 32
+    | k' `elem` [62,93,125] = k' - 2
+    | k' == 41 = 40
+    | otherwise = k'
+  --
+  prefix1' :: Int
+  prefix1'
+    | k' `elem` [49..58] = 129
+    | otherwise = 128
+  --
+  prefix2' :: Int
+  prefix2'
+    | k' < 48 = 0
+    | k' < 58 = 1
+    | k' < 65 = 0
+    | k' < 91 = 3
+    | k' < 97 = 0
+    | k' < 123 = 4
+  --
+  k' :: Int
+  k' = fromEnum k;
 
--- | For all characters X, prefixTwo X equals the second
--- "prefix" of X, e.g., "MAJUSCULE" or "MINUSCULE".
-prefixTwo :: Char -> Int;
-prefixTwo character
-  | shifter < 48 = 0
-  | shifter < 58 = 1
-  | shifter < 65 = 0
-  | shifter < 91 = 3
-  | shifter < 97 = 0
-  | shifter < 123 = 4
-  where shifter = fromEnum character
+-- | @defaultCharacter@ is the 'Character' value which @'readSingle'@
+-- interprets as a "yo, pause for a bit" signal.
+defaultCharacter :: Character;
+defaultCharacter = Character {prefix1 = 0, prefix2 = 0, asciiNum = 0};
 
--- | For all 'Char' @x@, @asciiNum x@ equals the "simplified" ASCII
--- representation of @x@.
-asciiNum :: Char -> Int;
-asciiNum character
-  | shifter `elem` [95..122] = shifter - 32
-  | shifter `elem` [62,93,125] = shifter - 2
-  | shifter == 41 = 40
-  | otherwise = shifter
-  where shifter = fromEnum character
+readSequence :: [Character] -> IO ();
+readSequence = mapM_ readSingle . intersperse defaultCharacter;
 
--- | For all 'Int' @g@, @toFileName g@ equals the filename of the
--- recording of EVAN's reading of character @g@, as determined by
--- @'asciiNum'@.
-toFileName :: Int -> FilePath;
-toFileName charInt = soundDir ++ show charInt ++ ".wav";
+readSingle :: Character -> IO ();
+readSingle defaultCharacter = threadDelay delay_interChar;
+readSingle k =
+  playFile (prefix1 k) >>
+  threadDelay delay_intraChar >>
+  playFile (prefix2 k) >>
+  threadDelay delay_intraChar >>
+  playFile (asciiNum k);
 
--- | For all ['Int'] @g@ which represents an ASCII character,
--- @readSequence g@ reads aloud the character which @g@ represents via
--- MPLAYER, returning MPLAYER's command-line output.
-readSequence :: [Int] -> IO [String];
-readSequence x = threadDelay delay_interChar >> mapM (playFile . toFileName) x;
-
--- | For all ['Char'] @k@, @playFile k@ plays the file whose path is @k@
--- via MPLAYER, returning MPLAYER's command-line output.
-playFile :: FilePath -> IO String;
-playFile filename = threadDelay delay_intraChar >> readProcess "mplayer" [filename] "";
+playFile :: Int -> IO ();
+playFile n = void $ readProcess "mplayer" [soundDir ++ show n ++ ".wav"] [];
 
 main :: IO ();
-main = getLine >>= mapM_ (readSequence . thingToInt);
+main = getLine >>= readSequence . map parseCharacter;

@@ -56,7 +56,7 @@ defaultCharacter = Character {prefix1 = 0, prefix2 = 0, asciiNum = 0};
 readSequence :: [Character] -> IO ();
 readSequence = mapM_ readSingle . intersperse defaultCharacter;
 
--- | @readSingle n@ reads @n@.  If @n == defaultCharacter@, then an
+-- | @readSingle n@ reads @n@.  If @n == 'defaultCharacter'@, then an
 -- intercharacter pause is "output".
 readSingle :: Character -> IO ();
 readSingle k

@@ -38,8 +38,8 @@ asciiNum character
   | otherwise = shifter
   where shifter = fromEnum character
 
--- | For all Int g, toFileName g equals the filename of the recording of
--- EVAN's reading of character g, as determined by asciiNum.
+-- | For all 'Int' @g@, @toFileName g@ equals the filename of the recording of
+-- EVAN's reading of character @g@, as determined by @'asciiNum'@.
 toFileName :: Int -> FilePath;
 toFileName charInt = soundDir ++ show charInt ++ ".wav";
 

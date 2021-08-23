@@ -52,7 +52,7 @@ parseCharacter k = Character {
   where
   asciiNum' :: Int
   asciiNum'
-    | k' `elem` [95..122] = k' - 32
+    | k' `elem` [97..122] = k' - 32
     | k' `elem` [62,93,125] = k' - 2
     | k' == 41 = 40
     | otherwise = k'

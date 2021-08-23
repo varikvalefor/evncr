@@ -1,5 +1,3 @@
--- TODO: IMPLEMENT PER-USER CONFIGURATION FILES.
-
 import Config;
 import Control.Concurrent;
 import System.Process;

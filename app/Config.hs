@@ -1,3 +1,4 @@
+-- | This module contains the configuration variables of EVANNOUNCER.
 module Config where
 
 -- | @delay_intraChar@ denotes the delay between readings of

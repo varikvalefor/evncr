@@ -98,7 +98,10 @@ readSingle k
 -- | @playFile n@ plays the file whose filename is @n ++ ".wav"@, where
 -- the root directory is @'soundDir'@.
 playFile :: Int -> IO ();
-playFile n = void $ readProcess "mplayer" [soundDir ++ show n ++ ".wav"] [];
+playFile n = void $ readProcess "mplayer" [path] []
+  where
+  path :: FilePath
+  path = soundDir ++ show n ++ ".wav";
 
 main :: IO ();
 main = getLine >>= readSequence . map parseCharacter;

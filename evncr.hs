@@ -13,7 +13,7 @@ data Character = Character {
   -- | @prefix2 k@ is the second prefix of @k@, e.g., "MAJUSCULE" or
   -- "MINUSCULE".
   prefix2 :: Int,
-  -- | @asciiNum k@ is the "meat and potatoes" of @k@, e.g., 
+  -- | @asciiNum k@ is the "meat and potatoes" of @k@, e.g.,
   asciiNum :: Int
 } deriving (Eq, Read, Show);
 

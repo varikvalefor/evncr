@@ -12,6 +12,16 @@ data Character = Character {
   prefix1 :: Int,
   -- | @prefix2 k@ is the second prefix of @k@, e.g., "MAJUSCULE" or
   -- "MINUSCULE".
+  --
+  -- @prefix2 k == 0@ iff @k@ is a symbol.
+  --
+  -- @prefix2 k == 1@ iff @k@ is a numeral.
+  --
+  -- @prefix2 k == 2@ only if something has gone horribly wrong.
+  --
+  -- @prefix2 k == 3@ iff @k@ is a majuscule.
+  --
+  -- @prefix2 k == 4@ iff @k@ is a minuscule.
   prefix2 :: Int,
   -- | @asciiNum k@ is the "meat and potatoes" of @k@, e.g.,
   asciiNum :: Int

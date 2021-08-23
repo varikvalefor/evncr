@@ -70,6 +70,7 @@ parseCharacter k = Character {
     | k' < 91 = 3
     | k' < 97 = 0
     | k' < 123 = 4
+    | otherwise = 0
   --
   k' :: Int
   k' = fromEnum k;

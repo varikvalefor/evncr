@@ -23,7 +23,20 @@ data Character = Character {
   --
   -- @prefix2 k == 4@ iff @k@ is a minuscule.
   prefix2 :: Int,
-  -- | @asciiNum k@ is the "meat and potatoes" of @k@, e.g.,
+  -- | @asciiNum k@ is the "meat and potatoes" of @k@.
+  --
+  -- If @k@ represents a minuscule character, then @asciiNum k@ equals
+  -- the ASCII representation of the character which @k@ represents.
+  --
+  -- If @k@ represents a majuscule character, then @asciiNum k@ equals
+  -- the ASCII representation of the minuscule equivalent of the
+  -- character which @k@ represents.
+  --
+  -- If @k@ represents a bracket of some sort, then @asciiNum k@ equals
+  -- the ASCII representation of the left bit of @k@'s bracket pair.
+  --
+  -- If @k@ represents some other symbol, then @asciiNum k@ just equals
+  -- the ASCII representation of the character which @k@ represents.
   asciiNum :: Int
 } deriving (Eq, Read, Show);
 

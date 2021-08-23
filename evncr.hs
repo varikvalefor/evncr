@@ -53,6 +53,7 @@ parseCharacter k = Character {
 defaultCharacter :: Character;
 defaultCharacter = Character {prefix1 = 0, prefix2 = 0, asciiNum = 0};
 
+-- | @readSequence k@ reads all characters of @k@.
 readSequence :: [Character] -> IO ();
 readSequence = mapM_ readSingle . intersperse defaultCharacter;
 
